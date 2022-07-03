@@ -6,7 +6,7 @@ const fs = require("fs");
 
 //get all notes
 router.get("/notes", (req, res) => {
-    let results = notes;
+    let results = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));;
     if (req.query) {
       results = filterByQuery(req.query, results);
     }
