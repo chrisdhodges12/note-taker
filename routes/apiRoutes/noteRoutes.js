@@ -39,9 +39,10 @@ router.post("/notes", (req, res) => {
 });
 
 //delete note
-router.delete('/notes/:id', (req, res) => {
-    res.send("Note deleted")
-})
+router.delete("notes/:id", function(req, res) {
+    notes.splice(req.params.id, 1);
+    update();
+});
 
 //updates the json file whenever a note is added or deleted
 function update() {
