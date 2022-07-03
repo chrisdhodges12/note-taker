@@ -7,7 +7,7 @@ const fs = require("fs");
 
 //get all notes
 router.get("/notes", (req, res) => {
-    let results = JSON.parse(fs.readFileSync("../db/db.json", "utf8"));;
+    let results = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));;
     if (req.query) {
       results = filterByQuery(req.query, results);
     }
@@ -22,7 +22,7 @@ router.get("/notes/:id", (req, res) => {
       res.json(result);
     } else {
       res.send(404);
-    } update();
+    }
 });
 
 //post a note with new ID
@@ -45,7 +45,7 @@ router.delete('/notes/:id', (req, res) => {
 
 //updates the json file whenever a note is added or deleted
 function update() {
-    fs.writeFile("db/db.json",JSON.stringify(notes,'\t'),err => {
+    fs.writeFile("db/db.json",JSON.stringify(notes,),err => {
         if (err) throw err;
         return true;
     });
