@@ -12,7 +12,6 @@ router.get("/notes", (req, res) => {
       results = filterByQuery(req.query, results);
     }
     res.json(results);
-    update();
 });
 
 //get single note by ID
@@ -35,21 +34,10 @@ router.post("/notes", (req, res) => {
         const note = createNewNote(req.body, notes);
         res.json(note);
     }
-    update();
 });
 
 //delete note
-router.delete("notes/:id", function(req, res) {
-    notes.splice(req.params.id, 1);
-    update();
-});
 
-//updates the json file whenever a note is added or deleted
-function update() {
-    fs.writeFile("db/db.json",JSON.stringify(notes,),err => {
-        if (err) throw err;
-        return true;
-    });
-}
+
 
 module.exports = router;
