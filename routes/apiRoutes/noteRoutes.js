@@ -13,7 +13,7 @@ router.get("/notes", (req, res) => {
     res.json(results);
 });
 
-//get single note
+//get single note by ID
 router.get("/notes/:id", (req, res) => {
     const result = findById(req.params.id, notes);
     if (result) {
@@ -35,6 +35,7 @@ if (!validateNote(req.body)) {
 }
 });
 
+//delete note
 router.delete('/notes/:id', (req, res) => {
     res.send("Note deleted")
   })
